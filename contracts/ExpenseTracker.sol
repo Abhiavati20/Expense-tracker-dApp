@@ -107,32 +107,6 @@ contract ExpenseTracker {
         );
     }
 
-    function getAllTransactions() external view returns (Transaction[] memory) {
-        uint256 transactionsCount = transactionsCountMap[msg.sender];
-        uint256 validTransactionCount = 0;
-
-        // First, calculate the number of valid transactions
-        for (uint256 i = 1; i <= transactionsCount; i++) {
-            if (transactionsMap[msg.sender][i]._id != 0) {
-                validTransactionCount++;
-            }
-        }
-
-        // Create an array of the appropriate size
-        Transaction[] memory result = new Transaction[](validTransactionCount);
-        uint256 index = 0;
-
-        // Populate the result array with valid transactions
-        for (uint256 i = 1; i <= transactionsCount; i++) {
-            if (transactionsMap[msg.sender][i]._id != 0) {
-                result[index] = transactionsMap[msg.sender][i];
-                index++;
-            }
-        }
-
-        return result;
-    }
-
     function getTransactionById(
         uint256 transactionId
     ) external view returns (Transaction memory) {

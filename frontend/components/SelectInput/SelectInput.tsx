@@ -2,9 +2,9 @@ import React from 'react'
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '../ui/select'
 import { ISelectInputOptions } from '@/lib/utils'
 
-const SelectInput = ({options,placeholder}:{options:ISelectInputOptions[], placeholder:string}) => {
+const SelectInput = ({options,placeholder,onChange}:{options:ISelectInputOptions[], placeholder:string, onChange:(value:string) => void}) => {
   return (
-    <Select>
+    <Select onValueChange={(value:string) => onChange(value)}>
         <SelectTrigger className="w-full mx-2">
             <SelectValue placeholder={placeholder} />
         </SelectTrigger>
